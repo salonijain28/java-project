@@ -1,0 +1,94 @@
+//Bank Account System By using opps concept in java
+package com.Bank;
+import java.util.Scanner;
+public class BankAcc{
+	public static void main(String[] args) {
+		BankAccount1 b1=new BankAccount1("saloni jain", "id 2801");
+		b1.display();
+	}
+}
+class BankAccount1{
+	int balance;
+	int pretransiction;
+	String Customer_name;
+	String Customer_id;
+	BankAccount1(String cname,String cid){
+		Customer_name=cname;
+		Customer_id=cid;
+	}
+	void deposite(int amount){
+		if(amount!=0)
+		{
+			balance=balance+amount;
+			pretransiction=amount;
+		}
+	}
+	void withdraw(int amount){
+		if(amount!=0) {
+			balance=balance-amount;
+			pretransiction=pretransiction-amount;
+		}
+	}
+	void privioustransiction() {
+		if(pretransiction>0){
+			System.out.println("deposted " +pretransiction);
+		}
+		else if(pretransiction<0){
+			System.out.println("Withdraw "+ Math.abs(pretransiction));
+		}
+		else {
+			System.out.println("no transiction is accured");
+		}
+	}
+	void display(){
+		char option='\0';
+	    Scanner scanner=new Scanner(System.in);
+	    
+	    System.out.println("Welcom  "+Customer_name);
+	    System.out.println("your  "+Customer_id);
+	    System.out.println("\n");
+	    System.out.println("A. Cheack Balance");
+	    System.out.println("B. Deposite");
+	    System.out.println("C.Withdraw");
+	    System.out.println("D.privioustransiction");
+	    System.out.println("E.exit");
+		do {
+			System.out.println("Enter an option");
+			option=scanner.next().charAt(0);
+			System.out.println("\n");
+			switch(option) {
+			case 'A':{
+				System.out.println("Balance =" +balance);
+				System.out.println("\n");
+				break;
+			}
+			case 'B':{
+				System.out.println("enter an amount to deposite");
+				int amount=scanner.nextInt();
+				deposite(amount);
+				System.out.println("\n");
+				break;
+			}
+			case 'C':{
+				System.out.println("enter an amount to withdraw");
+				int amount2=scanner.nextInt();
+				withdraw(amount2);
+				System.out.println("\n");
+				break;
+			}
+			case 'D':{
+				privioustransiction();
+				System.out.println("\n");
+				break;
+			}
+			case 'E':{
+				System.out.println("*******************************************");
+				break;
+			}
+			default:
+				System.out.println("invalid charachter please enter valid charachter");
+			}
+			}while(option!='E');
+		System.out.println("Tankyou for using our service");
+}
+}
